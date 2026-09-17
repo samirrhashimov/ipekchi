@@ -1,4 +1,5 @@
-import { FaHeart, FaShoppingBag, FaStar } from "react-icons/fa"
+import { useState } from "react"
+import { FaCheck, FaHeart, FaShoppingBag, FaStar } from "react-icons/fa"
 
 const categoryLabels = {
   "men's clothing": "Kişi",
@@ -6,7 +7,15 @@ const categoryLabels = {
   jewelery: "Zinət əşyaları",
 }
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onAddToCart }) => {
+  const [isAdded, setIsAdded] = useState(false)
+
+  const handleAddToCart = () => {
+    onAddToCart(product)
+    setIsAdded(true)
+    setTimeout(() => setIsAdded(false), 1200)
+  }
+
   return (
     <article className="group min-w-0">
       <div className="relative h-[220px] overflow-hidden bg-[#e8e8e4] min-[641px]:h-[300px] min-[901px]:h-[370px]">
@@ -15,9 +24,9 @@ const ProductCard = ({ product }) => {
           <FaHeart />
         </button>
         <img className="h-full w-full object-contain p-[19px] mix-blend-multiply transition-transform duration-500 group-hover:scale-105 min-[641px]:p-8" src={product.image} alt={product.title} />
-        <button className="absolute bottom-0 left-0 hidden w-full translate-y-full items-center justify-center gap-2 border-0 bg-[#1a1b19] p-[15px] text-[12px] text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 min-[641px]:flex" type="button">
-          <FaShoppingBag />
-          Səbətə əlavə et
+        <button className={`absolute bottom-0 left-0 flex w-full translate-y-0 items-center justify-center gap-2 border-0 p-[15px] text-[12px] text-white transition-all duration-300 min-[641px]:translate-y-full min-[641px]:opacity-0 min-[641px]:group-hover:translate-y-0 min-[641px]:group-hover:opacity-100 ${isAdded ? "bg-[#6d9f68] animate-pulse" : "bg-[#1a1b19]"}`} type="button" onClick={handleAddToCart} aria-label={isAdded ? `${product.title} səbətə əlavə olundu` : `${product.title} səbətə əlavə et`}>
+          {isAdded ? <FaCheck className="animate-bounce" /> : <FaShoppingBag />}
+          {isAdded ? "Əlavə olundu" : "Səbətə əlavə et"}
         </button>
       </div>
       <div className="pt-4">

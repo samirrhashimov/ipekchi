@@ -12,13 +12,17 @@ const categoryLabels = {
   jewelery: "Zinət əşyaları",
 }
 
-const Catalog = () => {
+const Catalog = ({ searchQuery, onAddToCart }) => {
   const [activeCategory, setActiveCategory] = useState("Hamısı")
 
   const filteredProducts = useMemo(() => {
-    if (activeCategory === "Hamısı") return products
-    return products.filter((product) => categoryLabels[product.category] === activeCategory)
-  }, [activeCategory])
+    const normalizedQuery = searchQuery.trim().toLowerCase()
+    return products.filter((product) => {
+      const matchesCategory = activeCategory === "Hamısı" || categoryLabels[product.category] === activeCategory
+      const searchableText = `${product.title} ${product.description} ${categoryLabels[product.category]}`.toLowerCase()
+      return matchesCategory && (!normalizedQuery || searchableText.includes(normalizedQuery))
+    })
+  }, [activeCategory, searchQuery])
 
   return (
     <section className="px-0 pb-[72px] pt-[52px] sm:pb-[100px] sm:pt-[72px]" id="catalog">
@@ -45,8 +49,10 @@ const Catalog = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-x-3 gap-y-8 min-[641px]:grid-cols-3 min-[901px]:grid-cols-4 min-[641px]:gap-x-[18px] min-[641px]:gap-y-[29px]">
-          {filteredProducts.map((product) => <ProductCard key={product.id} product={product} />)}
+          {filteredProducts.map((product) => <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />)}
         </div>
+
+        {filteredProducts.length === 0 && <p className="py-16 text-center text-sm text-[#74756f]">Axtarışınıza uyğun məhsul tapılmadı.</p>}
 
         <button className="mx-auto mt-[66px] flex items-center gap-4 border border-[#c8cbc2] bg-transparent px-5 py-[14px] text-[12px]" type="button">Kataloqa bax <FaArrowRight className="text-[11px]" /></button>
       </Container>
