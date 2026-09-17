@@ -10,7 +10,7 @@ const Navbar = ({ searchQuery, onSearch, cartItems, onRemoveFromCart, onChangeQu
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[#deded8] bg-[#f4f3ef]/95 shadow-sm backdrop-blur-sm">
+    <header className="sticky top-0 z-30 border-b border-[#deded8] bg-[#f4f3ef]/95 shadow-sm">
         <Container>
           <div className="flex h-[72px] items-center justify-between sm:h-[88px]">
             <a href="#top" aria-label="İpekçi ana səhifə"><img className="block h-[34px] w-auto sm:h-[43px]" src={logo} alt="İpekçi" /></a>

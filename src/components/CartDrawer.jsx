@@ -5,8 +5,8 @@ const CartDrawer = ({ items, onClose, onRemove, onChangeQuantity }) => {
 
   return (
     <>
-      <button className="fixed inset-0 z-40 cursor-default bg-[#1a1b19]/30" type="button" aria-label="Səbəti bağla" onClick={onClose} />
-      <aside className="fixed right-0 top-0 z-50 flex h-full w-full max-w-[390px] flex-col bg-[#f4f3ef] p-5 shadow-2xl sm:p-7" aria-label="Səbət">
+      <button className="fixed inset-0 z-[100] cursor-default bg-[#1a1b19]/30" type="button" aria-label="Səbəti bağla" onClick={onClose} />
+      <aside className="fixed right-0 top-0 z-[110] flex h-full w-full max-w-[390px] flex-col bg-[#f4f3ef] p-5 shadow-2xl sm:p-7" aria-label="Səbət">
         <div className="flex items-center justify-between border-b border-[#deded8] pb-5">
           <div>
             <p className="m-0 text-[10px] font-bold tracking-[.18em] text-[#71736e]">SEÇİMLƏRİN</p>

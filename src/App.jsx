@@ -31,7 +31,7 @@ function App() {
   }
 
   return (
-    <div className="min-w-[320px] overflow-hidden bg-[#f4f3ef] text-[#1a1b19]" id="top">
+    <div className="min-w-[320px] overflow-x-clip bg-[#f4f3ef] text-[#1a1b19]" id="top">
       <Navbar searchQuery={searchQuery} onSearch={setSearchQuery} cartItems={cartItems} onRemoveFromCart={removeFromCart} onChangeQuantity={changeQuantity} />
       <main>
         <Hero />
