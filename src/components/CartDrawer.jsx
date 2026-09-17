@@ -9,7 +9,6 @@ const CartDrawer = ({ items, onClose, onRemove, onChangeQuantity }) => {
       <aside className="fixed right-0 top-0 z-[110] flex h-full w-full max-w-[390px] flex-col bg-[#f4f3ef] p-5 shadow-2xl sm:p-7" aria-label="Səbət">
         <div className="flex items-center justify-between border-b border-[#deded8] pb-5">
           <div>
-            <p className="m-0 text-[10px] font-bold tracking-[.18em] text-[#71736e]">SEÇİMLƏRİN</p>
             <h2 className="m-0 mt-2 font-['Manrope'] text-2xl font-semibold tracking-[-.05em]">Səbət <span className="text-sm font-normal text-[#92938d]">({items.length})</span></h2>
           </div>
           <button className="border-0 bg-transparent p-2 text-[#1a1b19]" type="button" aria-label="Səbəti bağla" onClick={onClose}><FaTimes /></button>

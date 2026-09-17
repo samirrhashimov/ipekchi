@@ -7,7 +7,7 @@ const categoryLabels = {
   jewelery: "Zinət əşyaları",
 }
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product, onAddToCart, isFavorite, onToggleFavorite }) => {
   const [isAdded, setIsAdded] = useState(false)
 
   const handleAddToCart = () => {
@@ -20,7 +20,7 @@ const ProductCard = ({ product, onAddToCart }) => {
     <article className="group min-w-0">
       <div className="relative h-[220px] overflow-hidden bg-[#e8e8e4] min-[641px]:h-[300px] min-[901px]:h-[370px]">
         <span className="absolute left-[13px] top-[13px] z-[1] bg-[#f4f3ef] px-[9px] py-[7px] text-[9px] uppercase tracking-[.08em] text-[#666963]">{categoryLabels[product.category]}</span>
-        <button className="absolute right-[13px] top-[13px] z-[1] border-0 bg-transparent p-[5px] text-[13px] text-[#1a1b19] transition-colors hover:text-[#b45c54]" type="button" aria-label={`${product.title} favoritlərə əlavə et`}>
+        <button className={`absolute right-[13px] top-[13px] z-[1] border-0 bg-transparent p-[5px] text-[13px] transition-colors hover:text-[#6d9f68] ${isFavorite ? "text-[#6d9f68]" : "text-[#1a1b19]"}`} type="button" aria-label={`${product.title} favoritlərə əlavə et`} aria-pressed={isFavorite} onClick={() => onToggleFavorite(product.id)}>
           <FaHeart />
         </button>
         <img className="h-full w-full object-contain p-[19px] mix-blend-multiply transition-transform duration-500 group-hover:scale-105 min-[641px]:p-8" src={product.image} alt={product.title} />
